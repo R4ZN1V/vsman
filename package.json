@@ -43,6 +43,6 @@
 		"vscode-test": "^1.4.1"
 	},
 	"dependencies": {
-		"jroff": "file:../jroff"
+		"jroff": "file:node_modules/jroff"
 	}
 }
