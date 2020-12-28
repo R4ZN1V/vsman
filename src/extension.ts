@@ -49,7 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
 				//console.log(`aa: ${parsedData}`)
 				return new vscode.Hover({
 					language: "kaki",
-					value: `${parsedData}`
+					value: `${data}`
 				})
 			}
         }
