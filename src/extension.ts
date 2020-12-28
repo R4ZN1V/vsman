@@ -39,19 +39,17 @@ export function activate(context: vscode.ExtensionContext) {
 				var data = zlib.gunzipSync(compressed)
 				console.log(`${data}`)
 
-				// var generator = {}
-				// var parsedData = {}
-				// try {
-				// 	generator = new jroff.HTMLGenerator()
-				// 	parsedData = generator.generate(data, 'doc')
-				// } catch(error) {
-				// 	console.error(error);
-					
-				// }
-				// console.log(`aa: ${parsedData}`)
+				var parsedData = {}
+				try {
+					var generator = new jroff.HTMLGenerator()
+					parsedData = generator.generate(data, 'doc')
+				} catch(error) {
+					console.error(error);	
+				}
+				//console.log(`aa: ${parsedData}`)
 				return new vscode.Hover({
 					language: "kaki",
-					value: `${data}`
+					value: `${parsedData}`
 				})
 			}
         }
