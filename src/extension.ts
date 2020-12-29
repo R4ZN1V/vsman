@@ -2,8 +2,9 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import * as fs from 'fs';
-import * as jroff from 'jroff';
 import * as zlib from 'zlib';
+import * as manolo from 'manolo';
+//var manolo = require('node_modules/manolo');
 
 let syscalls: {[names: string]: string} = [];
 const man2Path = '/usr/share/man/man2/';
@@ -34,22 +35,20 @@ export function activate(context: vscode.ExtensionContext) {
             const word = document.getText(range);
 
 			if (word in syscalls){
-				console.log('!')
 				var compressed = fs.readFileSync(syscalls[word], {})
-				var data = zlib.gunzipSync(compressed)
-				console.log(`${data}`)
+				var data = zlib.gunzipSync(compressed).toString()
 
 				var parsedData = {}
 				try {
-					var generator = new jroff.HTMLGenerator()
-					parsedData = generator.generate(data, 'doc')
+					console.log(`${typeof manolo}`)
+					parsedData = manolo(data)
 				} catch(error) {
 					console.error(error);	
 				}
 				//console.log(`aa: ${parsedData}`)
 				return new vscode.Hover({
 					language: "kaki",
-					value: `${data}`
+					value: `${parsedData}`
 				})
 			}
         }
