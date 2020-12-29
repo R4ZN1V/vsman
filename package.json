@@ -43,6 +43,5 @@
 		"vscode-test": "^1.4.1"
 	},
 	"dependencies": {
-		"manolo": "^0.1.0"
 	}
 }
