@@ -2,7 +2,6 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import * as fs from 'fs';
-import * as zlib from 'zlib';
 import * as child_process from 'child_process';
 
 let syscalls: {[names: string]: string} = [];
@@ -34,19 +33,6 @@ export function activate(context: vscode.ExtensionContext) {
             const word = document.getText(range);
 
 			if (word in syscalls){
-				// var compressed = fs.readFileSync(syscalls[word], {})
-				// var data = zlib.gunzipSync(compressed).toString()
-
-				// var parsedData = {}
-				// try {
-				// 	console.log(`${typeof jroff.HTMLGenerator}`)
-				// 	var generator = new jroff.HTMLGenerator()
-				// 	parsedData = generator.generate(data, 'doc')
-				// } catch(error) {
-				// 	console.error(error);	
-				// }
-				//console.log(`aa: ${parsedData}`)
-
 				var result = child_process.spawnSync('man', [`${syscalls[word]}`]);
 				var data = result.stdout;
 
